@@ -1,0 +1,89 @@
+{
+  "name": "TrueMediaExtension",
+  "description": "TrueMediaExtension is a Chrome extension that allows users to evaluate the authenticity or truthfulness of online stories, particularly from platforms like X (formerly Twitter), Facebook, or other social media sites.",
+  "version": "0.1",
+  "manifest_version": 3,
+  "icons": {
+    "16": "assets/icons/16.png",
+    "48": "assets/icons/48.svg",
+    "128": "assets/icons/128.svg"
+  },
+  "action": {
+    "default_icon": {
+      "16": "assets/icons/16.png",
+      "48": "assets/icons/48.svg",
+      "128": "assets/icons/128.svg"
+    },
+    "default_title": "Verify with TrueMedia: Is this real or fake?",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://x.com/*",
+        "https://www.x.com/*",
+        "https://twitter.com/*",
+        "https://www.twitter.com/*"
+      ],
+      "js": ["base.js", "domains/twitter.js"],
+      "css": ["base.css"],
+      "run_at": "document_end"
+    },
+    {
+      "matches": [
+        "https://www.facebook.com/*",
+        "https://facebook.com/*",
+        "https://m.facebook.com/*"
+      ],
+      "js": ["base.js", "domains/facebook.js"],
+      "css": ["base.css"],
+      "run_at": "document_end"
+    },
+    {
+      "matches": ["https://www.instagram.com/*", "https://instagram.com/*"],
+      "js": ["base.js", "domains/instagram.js"],
+      "css": ["base.css"],
+      "run_at": "document_end"
+    },
+    {
+      "matches": ["https://www.tiktok.com/*", "https://tiktok.com/*"],
+      "js": ["base.js", "domains/tiktok.js"],
+      "css": ["base.css"],
+      "run_at": "document_end"
+    },
+    {
+      "matches": [
+        "https://www.reddit.com/*",
+        "https://reddit.com/*",
+        "https://old.reddit.com/*"
+      ],
+      "js": ["base.js", "domains/reddit.js"],
+      "css": ["base.css"],
+      "run_at": "document_end"
+    },
+    {
+      "matches": ["https://drive.google.com/*"],
+      "js": ["base.js", "domains/googleDrive.js"],
+      "css": ["base.css"],
+      "run_at": "document_end"
+    },
+    {
+      "matches": ["https://docs.google.com/*"],
+      "js": ["base.js", "domains/googleDocs.js"],
+      "css": ["base.css"],
+      "run_at": "document_end"
+    },
+    {
+      "matches": [
+        "https://mastodon.social/*",
+        "https://mastodon.xyz/*",
+        "https://mastodon.online/*",
+        "https://mstdn.io/*"
+      ],
+      "js": ["base.js", "domains/mastodon.js"],
+      "css": ["base.css"],
+      "run_at": "document_end"
+    }
+  ],
+  "host_permissions": ["https://detect.truemedia.org/api/*"]
+}
